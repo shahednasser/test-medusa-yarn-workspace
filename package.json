@@ -7,19 +7,18 @@
     "apps/storefront"
   ],
   "scripts": {
-    "dev": "turbo run dev",
-    "dev:backend": "turbo run dev --filter=backend",
-    "dev:storefront": "turbo run dev --filter=storefront",
-    "build": "turbo run build",
-    "build:backend": "turbo run build --filter=backend",
-    "build:storefront": "turbo run build --filter=storefront",
-    "start": "turbo run start",
-    "start:backend": "turbo run start --filter=backend",
-    "start:storefront": "turbo run start --filter=storefront"
+    "dev": "concurrently \"yarn workspace backend dev\" \"yarn workspace storefront dev\"",
+    "dev:backend": "yarn workspace backend dev",
+    "dev:storefront": "yarn workspace storefront dev",
+    "build": "yarn workspace backend build && yarn workspace storefront build",
+    "build:backend": "yarn workspace backend build",
+    "build:storefront": "yarn workspace storefront build",
+    "start": "concurrently \"yarn workspace backend start\" \"yarn workspace storefront start\"",
+    "start:backend": "yarn workspace backend start",
+    "start:storefront": "yarn workspace storefront start"
   },
   "packageManager": "yarn@3.6.4",
   "devDependencies": {
-    "concurrently": "^9.2.1",
-    "turbo": "^2.7.3"
+    "concurrently": "^9.2.1"
   }
 }
